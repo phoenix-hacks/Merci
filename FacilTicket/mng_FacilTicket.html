@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FacilTicket | Management</title>
+    <link rel="stylesheet" href="./facilticket.css">
+    <link rel="stylesheet" href="../global.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <section class="facility-landing">
+        <!-- Back Button -->
+        <button id="back-btn"><a href="../LandingPage/index.html"><i class='bx bx-arrow-back'></i></a></button>
+        <div class="facility-heading">
+            <h1 class="section-title">Facil<span>Ticket</span></h1>
+            <p>Centralized Platform for Campus Issue Tracking</p>
+        </div>
+        <div class="facility-container">
+            <div id="ticket-history" class="ticket-history">
+                <h1>Ticket History</h1>
+                <!-- Refresh button and next/ prev pages buttons -->
+                <div class="extra-btns">
+                    <button id="refresh-btn" onclick="refreshTicketHistory()"><i class='bx bx-refresh'></i></button>
+                    <button><i class='bx bx-chevron-left'></i></button>
+                    <button><i class='bx bx-chevron-right'></i></button>
+                </div>
+            </div>
+            <div class="ticket-container">
+                <div class="ticket-stats">
+                    <h2>Statistics</h2>
+                    <p>Number of tickets: <span id="ticket-count">0</span></p>
+                    <p>Number of resolved tickets: <span id="resolved-count">0</span></p>
+                    <p>Number of open tickets: <span id="open-ticket-count">0</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="./facilticket.js"></script>
+</body>
+</html>

@@ -374,3 +374,69 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 
+/* Back button */
+
+#back-btn{
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: flex;
+    align-items: center;
+    background: var(--text-color);
+    font-size: 1.4rem;
+    text-decoration: none;
+    padding: 0.8rem 1rem;
+    border-radius: 0.5rem;
+    transition: transform 0.3s;
+    z-index: 100;
+    cursor: pointer;
+}
+
+#back-btn:hover{
+    transform: translateX(-5px);
+}
+
+#back-btn i{
+    color: var(--bg-color);
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.extra-btns{
+    position: absolute;
+    top: .5rem;
+    right: 1rem;
+    display: flex;
+    align-items: center;
+    background: var(--text-color);
+    font-size: 1.4rem;
+    text-decoration: none;
+    padding: 0.6rem 1rem;
+    border-radius: 0.5rem;
+    transition: transform 0.3s;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.extra-btns button{
+    background: var(--text-color);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.extra-btns button:first-child{
+    margin-right: 1.5rem;
+}
+
+.extra-btns button i:hover{
+    color: var(--main-color);
+}
+
+.extra-btns button i{
+    color: var(--bg-color);
+    font-size: 2rem;
+    font-weight: 600;
+}
+
