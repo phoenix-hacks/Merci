@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raise Ticket</title>
+    <link rel="stylesheet" href="./facilticket.css">
+    <link rel="stylesheet" href="../global.css">
+</head>
+<body>
+    <!----- Ticket Form ----->
+    <section class="registration" id="registration">
+        <h2 class="section-title">Raise <span>Ticket</span></h2>
+          <form id="registration_form">
+            <div class="input-container" id="leader-section">
+              <div class="input-box detail-head">
+                <h2>Ticket Details</h2>
+              </div>
+              
+              <input class="in" type="text" placeholder="Block" id="block" name="block" required>
+              <input class="in" type="text" placeholder="Room No./ Place of incident" id="place" name="place" required>
+
+                <div class="in drop-box">
+                  <label for="issue">Issue Title</label>
+                  <select id="drop" name="issue" required>
+                    <option value="ElectricalMalfunction" selected>Electrical malfunction</option>
+                    <option value="MessAround">Mess around us</option>
+                    <option value="TechGlitch">Technical Glitch</option>
+                    <option value="ResourceRequirement">Resource Requirement</option>
+                    <option value="other">Others</option>
+                  </select>
+                </div>
+              
+                <textarea class="in" placeholder="Issue Description" id="description" name="description" required></textarea>
+              <input type="submit" value="Pay & Submit" id="submit" class="reg-btn"> 
+            </div>
+          </form>
+    </section>
+    <script src="./facilticket.js"></script>
+</body>
+</html>
