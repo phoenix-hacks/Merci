@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0b0b0b;
+      --main-color: #ff7300;
+      --text-color: #ffffff;
+      --second-bg-color: #1a1a1a;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Open Sans Condensed', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    /* Buy Now Button */
+.buy-now {
+  background: var(--main-color); /* Vibrant orange background */
+  color: white;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px; /* Rounded corners */
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+/* Hover Effects */
+.buy-now:hover {
+  background: #ff4500; /* Slightly darker shade on hover */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px); /* Slight lift effect */
+}
+
+/* Add underline effect on hover */
+.buy-now::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0%;
+  height: 3px;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.buy-now:hover::before {
+  left: 0;
+  width: 100%;
+}
+
+/* Focus state */
+.buy-now:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 115, 0, 0.5);
+}
+
+/* Button active (click) effect */
+.buy-now:active {
+  transform: translateY(2px); /* Button slightly "pressed" when clicked */
+}
+
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 200px 2rem 2rem; /* Added top padding of 200px */
+    }
+
+    .back-button {
+  position: absolute; /* Place it at a fixed position */
+  top: 1rem; /* Set it at the top */
+  left: 1rem; /* Align it to the left corner */
+  display: flex;
+  align-items: center;
+  color: var(--text-color);
+  font-size: 1.4rem;
+  text-decoration: none;
+  padding: 0.8rem 1rem;
+  border-radius: 0.5rem;
+  transition: transform 0.3s;
+  z-index: 1;
+}
+
+.back-button img {
+  height: 1.2rem;
+  margin-right: 0.8rem;
+}
+
+.back-button:hover {
+  transform: scale(1.2); /* Slight zoom effect */
+}
+
+
+    .details-container {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .images {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .images img {
+      width: 100%;
+      border-radius: 0.5rem;
+    }
+
+    .details {
+      flex: 1;
+    }
+
+    .details h1 {
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .details p {
+      margin-bottom: 1rem;
+      font-size: 1.6rem;
+    }
+
+    .buy-now {
+      padding: 1rem 3rem;
+      background: var(--main-color);
+      color: var(--text-color);
+      font-size: 1.6rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+
+    .cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  gap: 30px; /* Adds gap between cards */
+  margin-top: 2rem; /* Optional: Adds space above the cards */
+  margin-bottom: 2rem; /* Optional: Adds space below the cards */
+}
+
+.cards .red {
+  background-color: #f43f5e;
+}
+
+.cards .blue {
+  background-color: #3b82f6;
+}
+
+.cards .green {
+  background-color: #22c55e;
+}
+
+.cards .card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+ width:300px;
+ height:300px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: 400ms;
+}
+.cards .card img {
+    max-width: 100%;
+    border-radius: 0.5rem;
+  }
+
+.cards .card p.tip {
+  font-size: 1em;
+  font-weight: 700;
+}
+
+.cards .card p.second-text {
+  font-size: .7em;
+}
+
+.cards .card:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.cards:hover > .card:not(:hover) {
+  filter: blur(10px);
+  transform: scale(0.9, 0.9);
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Back Button -->
+    <a href="buy.html" class="back-button">
+      <img src="../PublicMedia/back.png" alt="Back"> Back
+    </a>
+
+    <!-- Product Details -->
+    <div class="details-container" id="details-container">
+      <!-- Dynamic content will be loaded here -->
+    </div>
+  </div>
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+   const products = [
+  {
+    id: 1,
+    name: "Chair",
+    price: 1009,
+    description: "Armchair, brown-red/Tibbleby beige/grey",
+    condition: "A traditional design with a sense of familiarity.",
+    images: [
+      "../PublicMedia/chair.jpg",
+      "../PublicMedia/chair-1.jpg",
+      "../PublicMedia/chair-2.jpg",
+      "../PublicMedia/chair-3.jpg"
+    ]
+  },
+  {
+    id: 2,
+    name: "Table",
+    price: 3500,
+    description: "Dining table, brown oak with elegant finishing.",
+    condition: "A sturdy and modern design for everyday use.",
+    images: [
+      "../PublicMedia/table.jpg",
+      "../PublicMedia/table-1.jpeg",
+      "../PublicMedia/table-2.jpeg",
+      "../PublicMedia/table-3.avif"
+    ]
+  },
+  {
+    id: 3,
+    name: "Books",
+    price: 499,
+    description: "A collection of coding self help books.",
+    condition: "Great for reading enthusiasts and collectors.",
+    images: [
+      "../PublicMedia/book.jpg",
+      "../PublicMedia/book-1.webp",
+      "../PublicMedia/book-2.jpg",
+      "../PublicMedia/book-3.jpg"
+    ]
+  },
+  {
+    id: 4,
+    name: "Components",
+    price: 1999,
+    description: "Electronic components for DIY projects.",
+    condition: "Perfect for hobbyists and tech enthusiasts.",
+    images: [
+      "../PublicMedia/components.webp",
+      "../PublicMedia/components-1.jpg",
+      "../PublicMedia/components-2.jpg",
+      "../PublicMedia/components-3.jpg"
+    ]
+  },
+  {
+    id: 5,
+    name: "Sofa",
+    price: 4999,
+    description: "A luxurious and comfortable 3-seater sofa.",
+    condition: "Perfect for living rooms with a contemporary style.",
+    images: [
+      "../PublicMedia/sofa.webp",
+      "../PublicMedia/sofa-1.jpg",
+      "../PublicMedia/sofa-2.jpg",
+      "../PublicMedia/sofa-3.jpg"
+    ]
+  },
+  {
+    id: 6,
+    name: "Lamp",
+    price: 799,
+    description: "Modern desk lamp with adjustable brightness.",
+    condition: "Compact and durable for daily use.",
+    images: [
+      "../PublicMedia/lamp.webp",
+      "../PublicMedia/lamp-1.jpg",
+      "../PublicMedia/lamp-2.jpg",
+      "../PublicMedia/lamp-3.jpg"
+    ]
+  },
+  {
+    id: 7,
+    name: "Bed",
+    price: 8999,
+    description: "King-size bed with wooden frame and headrest.",
+    condition: "Comfortable and built to last for years.",
+    images: [
+      "../PublicMedia/bed.webp",
+      "../PublicMedia/bed-1.jpg",
+      "../PublicMedia/bed-2.jpg",
+      "../PublicMedia/bed-3.jpg"
+    ]
+  },
+  {
+    id: 8,
+    name: "Bookshelf",
+    price: 2500,
+    description: "Multi-layer bookshelf made from pine wood.",
+    condition: "Ideal for homes and offices.",
+    images: [
+      "../PublicMedia/bookshelf.webp",
+      "../PublicMedia/bookshelf-1.jpg",
+      "../PublicMedia/bookshelf-2.jpg",
+      "../PublicMedia/bookshelf-3.jpg"
+    ]
+  },
+  {
+    id: 9,
+    name: "Desk",
+    price: 3500,
+    description: "Study desk with minimalist design.",
+    condition: "Lightweight and perfect for workspaces.",
+    images: [
+      "../PublicMedia/desk.webp",
+      "../PublicMedia/desk-1.jpg",
+      "../PublicMedia/desk-2.jpg",
+      "../PublicMedia/desk-3.jpg"
+    ]
+  },
+  {
+    id: 10,
+    name: "Chair with Arms",
+    price: 1200,
+    description: "Padded chair with armrests for comfort.",
+    condition: "Great for prolonged sitting.",
+    images: [
+      "../PublicMedia/chair-arms.jpg",
+      "../PublicMedia/chair-arms-1.jpg",
+      "../PublicMedia/chair-arms-2.jpg",
+      "../PublicMedia/chair-arms-3.jpg"
+    ]
+  },
+  {
+    id: 11,
+    name: "Mirror",
+    price: 599,
+    description: "Wall-mounted decorative mirror.",
+    condition: "Modern design that complements any room.",
+    images: [
+      "../PublicMedia/mirror.jpg",
+      "../PublicMedia/mirror-1.jpg",
+      "../PublicMedia/mirror-2.jpg",
+      "../PublicMedia/mirror-3.jpg"
+    ]
+  },
+  {
+    id: 12,
+    name: "Cabinet",
+    price: 5500,
+    description: "Wooden cabinet with multiple compartments.",
+    condition: "Durable and perfect for storage.",
+    images: [
+      "../PublicMedia/cabinet.jpg",
+      "../PublicMedia/cabinet-1.jpg",
+      "../PublicMedia/cabinet-2.jpg",
+      "../PublicMedia/cabinet-3.jpg"
+    ]
+  }
+];
+
+
+    function getProductDetails(productId) {
+      return products.find(product => product.id === parseInt(productId));
+    }
+
+    function startPayment(product) {
+      const options = {
+        key: "rzp_test_9KcwA99uW7xFq7", // Replace with your Razorpay Key
+        amount: product.price * 100, // Amount in paise
+        currency: "INR",
+        name: "We Sale",
+        description: `Purchase of ${product.name}`,
+        image: "../PublicMedia/logo.png",
+        handler: function (response) {
+          alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
+        },
+        theme: { color: "#ff7300" }
+      };
+      const rzp = new Razorpay(options);
+      rzp.open();
+    }
+
+    function renderProductDetails(productId) {
+      const product = getProductDetails(productId);
+      if (!product) {
+        document.getElementById("details-container").innerHTML = "<p>Product not found.</p>";
+        return;
+      }
+
+      document.getElementById("details-container").innerHTML = `
+        <div class="cards">
+          ${product.images.map(image => `<div class="card"><img src="${image}" alt="${product.name}"></div>`).join("")}
+        </div>
+        <div class="details">
+          <h1>${product.name} - ₹${product.price}</h1>
+          <p>${product.description}</p>
+          <p>Condition: ${product.condition}</p>
+          <button class="buy-now" onclick='startPayment(${JSON.stringify(product)})'>Buy Now</button>
+        </div>
+      `;
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get("product");
+    renderProductDetails(productId);
+  </script>
+</body>
+</html>

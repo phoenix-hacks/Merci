@@ -1,0 +1,75 @@
+[
+    {
+      "id": 1,
+      "name": "Chair",
+      "price": "₹1009",
+      "image": "../PublicMedia/chair.png"
+    },
+    {
+      "id": 2,
+      "name": "Table",
+      "price": "₹3500",
+      "image": "../PublicMedia/table.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Books",
+      "price": "₹499",
+      "image": "../PublicMedia/book.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Components",
+      "price": "₹1999",
+      "image": "../PublicMedia/components.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Sofa",
+      "price": "₹4999",
+      "image": "../PublicMedia/sofa.webp"
+    },
+    {
+      "id": 6,
+      "name": "Lamp",
+      "price": "₹799",
+      "image": "../PublicMedia/lamp.webp"
+    },
+    {
+      "id": 7,
+      "name": "Bed",
+      "price": "₹8999",
+      "image": "../PublicMedia/bed.webp"
+    },
+    {
+      "id": 8,
+      "name": "Bookshelf",
+      "price": "₹2500",
+      "image": "../PublicMedia/bookshelf.webp"
+    },
+    {
+      "id": 9,
+      "name": "Desk",
+      "price": "₹3500",
+      "image": "../PublicMedia/desk.webp"
+    },
+    {
+      "id": 10,
+      "name": "Chair with Arms",
+      "price": "₹1200",
+      "image": "../PublicMedia/chair-arms.jpg"
+    },
+    {
+      "id": 11,
+      "name": "Mirror",
+      "price": "₹599",
+      "image": "../PublicMedia/mirror.jpg"
+    },
+    {
+      "id": 12,
+      "name": "Cabinet",
+      "price": "₹5500",
+      "image": "../PublicMedia/cabinet.jpg"
+    }
+  ]
+  
