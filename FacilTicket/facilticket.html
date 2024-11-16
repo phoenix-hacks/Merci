@@ -15,35 +15,64 @@
             <p>Your quick fix for campus issues. Report problems, get solutions.</p>
         </div>
         <div class="facility-container">
-            <div class="ticket-history">
-                <h2>Ticket History</h2>
-                <div class="ticket-box">
+            <div id="ticket-history" class="ticket-history">
+                <h1>Ticket History</h1>
+                <!-- <div class="ticket-box">
                     <div class="ticket-details">
                         <h2>Ticket Title</h2>
-                        <p>Ticket Description</p>
+                        <p>Ticket description goes here and can be as long as you want</p>
                     </div>
                     <div class="ticket-status">
                         <h2>Status: Open</h2>
-                        <button class="close-btn">Close</button>
+                        <button class="close-btn">Delete</button>
                     </div>
                 </div>
-                <div class="pages">
-                    <button class="prev-btn"><i class='bx bx-chevron-left'></i></button>
-                    <button class="next-btn"><i class='bx bx-chevron-right'></i></button>
+                <div class="ticket-box">
+                    <div class="ticket-details">
+                        <h2>Ticket Title</h2>
+                        <p>Ticket description goes here and can be as long as you want</p>
+                    </div>
+                    <div class="ticket-status">
+                        <h2>Status: Open</h2>
+                        <button class="close-btn">Delete</button>
+                    </div>
                 </div>
+                <div class="ticket-box">
+                    <div class="ticket-details">
+                        <h2>Ticket Title</h2>
+                        <p>Ticket description goes here and can be as long as you want</p>
+                    </div>
+                    <div class="ticket-status">
+                        <h2>Status: Open</h2>
+                        <button class="close-btn">Delete</button>
+                    </div>
+                </div>
+                <div class="ticket-box">
+                    <div class="ticket-details">
+                        <h2>Ticket Title</h2>
+                        <p>Ticket description goes here and can be as long as you want</p>
+                    </div>
+                    <div class="ticket-status">
+                        <h2>Status: Open</h2>
+                        <button class="close-btn">Delete</button>
+                    </div>
+                </div> -->
             </div>
             <div class="ticket-container">
                 <div class="ticket-gen">
-                    <button class="raise-btn">Raise Ticket</button>
+                    <h2>Have any issues?</h2>
+                    <a href="./ticket.html"><button class="raise-btn">Raise Ticket</button></a>
                 </div>
                 <div class="ticket-stats">
                     <h2>Statistics</h2>
-                    <p>Number of tickets: 0</p>
-                    <p>Number of resolved tickets: 0</p>
-                    <p>Number of open tickets: 0</p>
+                    <p>Number of tickets: <span id="ticket-count">0</span></p>
+                    <p>Number of resolved tickets: <span id="resolved-count">0</span></p>
+                    <p>Number of open tickets: <span id="open-ticket-count">0</span></p>
                 </div>
             </div>
         </div>
     </section>
+
+    <script src="./facilticket.js"></script>
 </body>
 </html>

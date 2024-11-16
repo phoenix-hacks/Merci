@@ -3,8 +3,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 90%;
-    margin: 0 auto;
+    padding: 0 5rem;
 }
 
 .facility-heading{
@@ -24,7 +23,6 @@
     position: relative;
     display: flex;
     justify-content: space-around;
-    background: red;
     min-height: 50rem;
     width: 90%;
     margin-top: 3rem;
@@ -36,6 +34,343 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    backdrop-filter: blur(5px);
     box-shadow: 0 0 .4rem var(--main-color);
 }
+
+.ticket-history h1{
+    margin: 0 0 1rem 0;
+    font-size: 2rem;
+    font-weight: 600;
+    padding: 1rem 0;
+    width: 100%;
+    text-transform: uppercase;
+    text-align: center;
+    box-shadow: 0 0 .4rem var(--main-color);
+}
+
+.ticket-box{
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 90%;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    color: var(--bg-color);
+    background: var(--text-color);
+    margin: .5rem 0;
+}
+
+.ticket-details{
+    width: 70%;
+}
+
+.ticket-details p{
+    margin-top: .8rem;
+}
+
+.ticket-status{
+    position: relative;
+    width: 30%;
+    text-align: center;
+}
+
+.close-btn {
+    margin-top: 0.8rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 .6rem var(--bg-color);
+    background-color: transparent; 
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; 
+}
+  
+.close-btn:hover {
+    box-shadow: 0 0 1rem var(--bg-color);
+}
+
+.ticket-container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35%;
+    padding: 1rem 2rem;
+}
+
+.ticket-gen{
+    padding: 2rem;
+    text-align: center;
+}
+
+.ticket-gen h2{
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+}
+
+.raise-btn{
+    font-size: 1.8rem;
+    font-weight: 500;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    background: var(--main-color);
+    color: var(--bg-color);
+    transition: all 0.3s ease-in-out;
+}
+
+.raise-btn:hover{
+    background: var(--second-text-color);
+    
+}
+
+.ticket-stats{
+    margin-top: 10rem;
+    box-shadow: 0 0 .4rem var(--main-color);
+    border-radius: .5rem;
+    padding: 2rem 3rem;
+    backdrop-filter: blur(10px);
+}
+
+.ticket-stats h2{
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: solid underline var(--text-color);
+}
+
+.ticket-stats p{
+    margin: 1rem 0;
+    font-size: 1.8rem;
+}
+
+
+
+/* ----- Ticket Form ----- */
+#registration_form{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0 3rem 0;
+}
+
+.detail-head{
+    color: var(--main-color);
+    text-transform: uppercase;
+    padding: 0 0 .8rem 0;
+    border-bottom: 1px solid var(--main-color);
+    margin-bottom: .5rem;
+}
+
+.detail-head h2, .detail-head button, .submit-btn{
+    z-index: 80;
+}
+
+.half{
+    width: 45%;
+}
+
+.drop-box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#drop{
+    margin-right: 1rem;
+    width: 60%;
+    text-align: center;
+    font-size: 1.5rem;
+    background: transparent;
+    color: var(--main-color);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+#drop option {
+    outline: none;
+    background-color: var(--second-bg-color); /* Base background color */
+}
+
+.input-container{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex-wrap: wrap;
+    padding: 4rem 3rem 4rem 3rem;
+    margin: 0 auto;
+    width: 40%;
+}
+  
+.input-container::before{
+    content: "";
+    width: 100%;
+    height: 100%;
+    filter: blur(40px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-clip-path: polygon(26% 0, 66% 0, 92% 0, 100% 8%, 100% 92%, 91% 100%, 7% 100%, 0 92%, 0 0);
+    clip-path: polygon(26% 0, 66% 0, 92% 0, 100% 8%, 100% 92%, 91% 100%, 7% 100%, 0 92%, 0 0);
+    background: rgba(189, 68, 233, 0.903);
+    transition: all 1s ease-in-out;
+    z-index: 1;
+}
+
+.input-box{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+  
+.input-container::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 98.5%;
+    height: 98%;
+    box-shadow: inset 0px 0px 20px 20px #212121;
+    background: rgb(27, 27, 27);
+    clip-path: polygon(26% 0, 31% 5%, 61% 5%, 66% 0, 92% 0, 100% 8%, 100% 92%, 91% 100%, 7% 100%, 0 92%, 0 0);
+    animation: backglitch 50ms linear infinite;
+    z-index: 2;
+}
+  
+.registration .input-box, .in, .reg-btn, .radio-input{
+    z-index: 80;
+    font-size: 1.5rem;
+}
+
+.spc-input-box{
+    position: relative;
+    flex-direction: column;
+}
+  
+.input-container .in{
+    position: relative;
+    background: transparent;
+    padding: .8rem;
+    margin: 1rem 0rem;
+    color: var(--text-color);
+    transition: all 1s ease-in-out;
+    border: 0.1rem solid hsl(221, 26%, 43%);
+    border-radius: 10px;
+    resize: none;
+}
+  
+.input-container .in:hover{
+    transition: all 1s ease-in-out;
+    background: linear-gradient(transparent 0%, rgba(226, 143, 254, 0.338) 100%, rgb(220, 142, 246) 100%, transparent 100%);
+}
+  
+.in::-moz-placeholder, label {
+    color: var(--main-color);
+}
+  
+.in::placeholder, label {
+    color: var(--main-color);
+}
+  
+.input-container input[type="radio"]{
+    margin-right: .5rem;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+.mode-box{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0;
+}
+
+.modes{
+    width: 40%;
+    margin-left: 3rem;
+}
+
+.modes label{
+    margin-right: 1.5rem;
+}
+
+.reg-btn{
+    font-weight: 500;
+    border-radius: 20px;
+    padding: 10px 20px;
+    outline: none;
+    border: none;
+    letter-spacing: 2px;
+    background: transparent;
+    color: var(--text-color);
+    box-shadow: 0 0 .5rem white;
+    transition: 0.3s ease;
+    cursor: pointer;
+    width: 30%;
+    margin: 1rem auto 0;
+  }
+  
+.reg-btn:hover{
+    box-shadow: 0 0 .8rem var(--main-color);
+    translate: 0 -.1rem;
+}
+
+#team-members-section{
+    display: none;
+}
+
+.team-member-add .input-box{
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem 3rem;
+    margin: 1rem 0;
+    border: 1px solid var(--main-color);
+    border-radius: 1rem;
+}
+
+.add-member{
+    font-size: 2rem;
+    border-radius: 50%;
+    padding: .5rem .7rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .3s ease;
+    color: var(--main-color);
+    background: transparent;
+    box-shadow: 0 0 .4rem var(--text-color);
+}
+
+.add-member:hover{
+    box-shadow: 0 0 .8rem var(--text-color);
+    /* translate: 0 -.1rem; */
+}
+
+.team-member-1 .input-box h2, .team-member-2 .input-box h2{
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--main-color);
+    text-transform: uppercase;
+}
+
+.team-member-1 .input-box:first-child, .team-member-2 .input-box:first-child{
+    justify-content: center;
+}
+
+.team-member-1 .spc-input-box{
+    /* border-bottom: 1px solid var(--main-color); */
+    margin-bottom: 1rem;
+}
+
 
