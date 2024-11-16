@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Root Variables */
+:root {
+    --dark-purple: #4b0082;
+    --light-purple: #9370db;
+    --white: #ffffff;
+    --hover-purple: #6a5acd;
+}
+
+/* General Body Styling */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--light-purple);
+    color: var(--white);
+}
+
+/* Header */
+.header {
+    background-color: var(--dark-purple);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.header .logo {
+    font-size: 2.4rem;
+    font-weight: bold;
+    color: var(--white);
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    color: var(--white);
+    font-size: 1.4rem;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--hover-purple);
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #2e2e2e; /* Dark gray for sidebar */
+    padding-top: 6rem; /* Push content below the header */
+    color: var(--white);
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin: 1.5rem 0; /* Spacing between links */
+}
+
+.sidebar-link {
+    text-decoration: none;
+    color: var(--white);
+    font-size: 1.4rem;
+    display: block;
+    padding: 1rem 1.5rem; /* Padding for link spacing */
+    transition: background-color 0.3s;
+}
+
+.sidebar-link:hover {
+    background-color: #575757; /* Lighter gray for hover */
+    border-radius: 8px;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 220px; /* Adjust to fit sidebar */
+    padding: 2rem;
+}
+
+.hero {
+    text-align: center;
+    padding: 5rem 2rem;
+    background-color: var(--dark-purple);
+    color: var(--white);
+    border-radius: 8px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.5rem;
+}
+
+/* Features Section */
+.feature-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.feature {
+    flex: 1 1 calc(25% - 2rem); /* Four equal boxes with spacing */
+    background-color: var(--light-purple);
+    color: var(--white);
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.feature:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark-purple);
+    text-align: center;
+    padding: 1.5rem 0;
+    color: var(--white);
+    font-size: 1.4rem;
+}
