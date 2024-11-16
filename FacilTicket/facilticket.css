@@ -1,0 +1,41 @@
+.facility-landing{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.facility-heading{
+    line-height: 1.2rem;
+}
+
+.facility-heading p{
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+.facility-heading .section-title{
+    padding-top: 5rem;
+}
+
+.facility-container{
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    background: red;
+    min-height: 50rem;
+    width: 90%;
+    margin-top: 3rem;
+}
+
+.ticket-history{
+    position: relative;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 0 .4rem var(--main-color);
+}
+
