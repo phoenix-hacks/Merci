@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MarketPlace</title>
+  <link rel="stylesheet" href="global.css"> <!-- Add your global.css file path -->
+  <style>
+    :root {
+      --bg-color: #0b0b0b; /* Set the background color here */
+      --main-color: #ff7300; /* Example main color */
+      --text-color: #fff; /* Example text color */
+      --second-text-color: #fffb00; /* Example secondary text color */
+    }
+
+    body {
+      font-family: 'Ubuntu', sans-serif;
+      background-color: var(--bg-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .glow-on-hover {
+      width: 220px;
+      height: 50px;
+      border: none;
+      outline: none;
+      color: #fff;
+      background: #111;
+      cursor: pointer;
+      position: relative;
+      z-index: 0;
+      border-radius: 10px;
+    }
+
+    .glow-on-hover:before {
+      content: '';
+      background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      background-size: 400%;
+      z-index: -1;
+      filter: blur(5px);
+      width: calc(100% + 4px);
+      height: calc(100% + 4px);
+      animation: glowing 20s linear infinite;
+      opacity: 0;
+      transition: opacity .3s ease-in-out;
+      border-radius: 10px;
+    }
+
+    .glow-on-hover:active {
+      color: #000;
+    }
+
+    .glow-on-hover:active:after {
+      background: transparent;
+    }
+
+    .glow-on-hover:hover:before {
+      opacity: 1;
+    }
+
+    .glow-on-hover:after {
+      z-index: -1;
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #111;
+      left: 0;
+      top: 0;
+      border-radius: 10px;
+    }
+
+    @keyframes glowing {
+      0% { background-position: 0 0; }
+      50% { background-position: 400% 0; }
+      100% { background-position: 0 0; }
+    }
+
+    .container {
+      width: 90%;
+      height: 75vh;
+      background: var(--bg-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      border-radius: 1rem;
+      position: relative;
+    }
+
+    .box {
+      width: 40%;
+      text-align: center;
+      border: 2px solid var(--main-color);
+      padding: 3rem;
+      border-radius: 1rem;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .box:hover {
+      transform: translateY(-1rem);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    .icon {
+      font-size: 6rem;
+      color: var(--main-color);
+      margin-bottom: 2rem;
+    }
+
+    .text {
+      margin-bottom: 2rem;
+      font-size: 1.8rem;
+      line-height: 1.5;
+      color: var(--text-color);
+    }
+
+    .button {
+      padding: 1rem 3rem;
+      font-size: 1.6rem;
+      background-color: var(--main-color);
+      color: var(--text-color);
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .button:hover {
+      background-color: var(--second-text-color);
+    }
+
+    .divider {
+      height: 80%;
+      width: 0.2rem;
+      background-color: var(--main-color);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="box">
+      <div class="icon">👜</div>
+      
+      <button class="glow-on-hover" type="button">Sell now</button>
+    </div>
+    <div class="box">
+      <div class="icon">🛒</div>
+      
+      <button class="glow-on-hover" type="button">Buy now</button>
+    </div>
+  </div>
+</body>
+</html>
