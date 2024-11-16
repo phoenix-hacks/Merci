@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Listing</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0b0b0b;
+      --main-color: #ff7300;
+      --text-color: #ffffff;
+      --second-bg-color: #1a1a1a;
+    }
+
+    html, body {
+      height: 100%;
+    
+      
+      justify-content: flex-start;
+      align-items: center;
+      font-family: 'Open Sans Condensed', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  width: 100%;
+  max-width: 1850px;
+  padding: 2rem;
+  padding-top: 100px; /* Add top padding */
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+  margin-top: 3rem; /* Added margin to create more space above the container */
+}
+
+
+    /* Back Button */
+    .back-button {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      display: flex;
+      align-items: center;
+      color: var(--text-color);
+      font-size: 1.4rem;
+      padding: 0.8rem 1rem;
+      text-decoration: none;
+      border-radius: 0.5rem;
+      transition: transform 0.3s;
+      z-index: 1;
+    }
+/* Back Button */
+.back-button img {
+  height: 1.2rem;
+  margin-right: 0.8rem;
+}
+
+.back-button:hover {
+  transform: scale(1.2);
+}
+
+.product-list {
+    
+  display: grid;
+  padding: 20px;
+  grid-template-columns: repeat(4, 1fr); /* 4 items per row */
+  gap: 20px; /* Adds gap between product cards */
+  margin-top: 3rem; /* Increased space between the back button and product listing */
+  margin-bottom: 3rem; /* Added space at the bottom */
+  width: 100%;
+}
+
+
+/* Product Card */
+.product-card {
+    align-items: center;
+  text-align: center;
+  background: var(--second-bg-color);
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.product-card img {
+  max-width: 100%;
+  max-height: 200px; /* Set a maximum height */
+  width: auto; /* Maintain aspect ratio */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 0.5rem;
+}
+
+.product-card h3 {
+  margin: 1rem 0 0.5rem;
+  font-size: 1.8rem;
+}
+
+    /* Button */
+    .btn {
+        align-items: center;
+      line-height: 50px;
+      height: 50px;
+      text-align: center;
+      width: 350px;
+      cursor: pointer;
+      color: #FFF;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .btn span {
+      transition: all 0.3s;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      opacity: 0;
+      transition: all 0.3s;
+      border-top: 1px solid rgba(255, 255, 255, 0.5);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+      transform: scale(0.1, 1);
+    }
+
+    .btn:hover span {
+      letter-spacing: 2px;
+    }
+
+    .btn:hover::before {
+      opacity: 1;
+      transform: scale(1, 1);
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      transition: all 0.3s;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .btn:hover::after {
+      opacity: 0;
+      transform: scale(0.1, 1);
+    }
+
+    /* Hover effects for product card */
+    .product-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 15px rgba(255, 115, 0, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Back Button -->
+    <a href="market.html" class="back-button">
+      <img src="../PublicMedia/back.png" alt="Back"> Back
+    </a>
+
+    <!-- Product Listing -->
+    <div class="product-list" id="product-list">
+      <!-- Products will be loaded here dynamically -->
+    </div>
+  </div>
+
+  <script>
+    // Function to fetch the products and generate the cards
+    fetch('products.json')
+      .then(response => response.json())
+      .then(products => {
+        const productList = document.getElementById('product-list');
+        products.forEach(product => {
+          const productCard = document.createElement('div');
+          productCard.classList.add('product-card');
+          productCard.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p>${product.price}</p>
+            <div class="btn btn-one" onclick="navigateToDetails('${product.id}')">
+              <span>Buy Now</span>
+            </div>
+          `;
+          productList.appendChild(productCard);
+        });
+      });
+
+    function navigateToDetails(productId) {
+      window.location.href = `details.html?product=${productId}`;
+    }
+  </script>
+</body>
+</html>
