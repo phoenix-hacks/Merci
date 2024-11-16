@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
             var issue = document.getElementById('drop').value;
             var description = document.getElementById('description').value;
 
-            // Store data in local storage
+            // Create a ticket object
             var ticketData = {
                 block: block,
                 place: place,
@@ -20,7 +20,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 status: "Open" // Add a default status
             };
 
+            // Store data in local storage
             localStorage.setItem('ticketData', JSON.stringify(ticketData));
+
+            // Create a Blob from the ticket data for download
+            var blob = new Blob([JSON.stringify(ticketData, null, 2)], { type: 'application/json' });
+            var url = URL.createObjectURL(blob);
+
+            // Create a link element to download the file
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = 'ticket.json'; // Name of the file to be downloaded
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url); // Clean up
 
             // Redirect to facilticket.html
             window.location.href = 'facilticket.html';
@@ -40,9 +54,18 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div class="ticket-status">
                 <h2>Status: ${ticket.status}</h2>
-                <button class="close-btn">Delete</button>
+                <button class="close-btn">Close</button>
             </div>
         `;
+
+        ticketBox.querySelector('.close-btn').addEventListener('click', function() {
+            ticketBox.remove(); // Remove the ticket box from the DOM
+            
+            // Update ticket count
+            var ticketCount = document.getElementById('resolved-count');
+            ticketCount.textContent = parseInt(ticketCount.textContent) + 1;
+        });
+
         document.getElementById('ticket-history').appendChild(ticketBox);
     }
 
@@ -61,4 +84,40 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.removeItem('ticketData');
         }
     }
+
+    document.getElementById('refresh-btn').addEventListener('click', function() {
+    // Fetch ticket data from ticket.json
+    fetch('ticket.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(ticketData => {
+            // Create a ticket box for the fetched data
+            createTicketBox(ticketData);
+            // Update ticket count
+            var ticketCount = document.getElementById('ticket-count');
+            var openTicketCount = document.getElementById('open-ticket-count');
+            ticketCount.textContent = parseInt(ticketCount.textContent) + 1;
+            openTicketCount.textContent = parseInt(openTicketCount.textContent) + 1;
+
+            // Clear the content of ticket.json (simulate deletion)
+            const emptyData = JSON.stringify({}); // or any placeholder data
+            const blob = new Blob([emptyData], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'ticket.json'; // Overwrite the existing ticket.json
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url); // Clean up
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+            alert('Failed to load ticket data.');
+        });
+});
 });
