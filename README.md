@@ -1,3 +1,3 @@
 # Team Name: Merci
 
-# Project Name: Lowkey - Low Network Authentication System 
+# Project Name: Uniserve - Your campus service providers 
