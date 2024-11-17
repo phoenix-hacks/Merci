@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Options Page</title>
+    <link rel="shortcut icon" href="../PublicMedia/favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
     <style>
         /* Add all your card styles here */
@@ -205,10 +206,38 @@ html, body {
             padding: 20px;
         }
 
+        /* Back Button */
+    .back-button {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      display: flex;
+      align-items: center;
+      color: white;
+      font-size: 1.4rem;
+      padding: 0.8rem 1rem;
+      text-decoration: none;
+      border-radius: 0.5rem;
+      transition: transform 0.3s;
+      z-index: 1;
+    }
+/* Back Button */
+.back-button img {
+  height: 1.2rem;
+  margin-right: 0.8rem;
+}
+
+.back-button:hover {
+  transform: scale(1.2);
+}
+
     </style>
 </head>
 <body>
-
+<!-- Back Button -->
+<a href="./loginshow.html" class="back-button">
+    <img src="../PublicMedia/back.png" alt="Back"> Back
+  </a>
 <div class="card-container">
     <!-- MarketPlace Card -->
      <a href="./Market Place/market.html">

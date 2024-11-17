@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FacilTicket Dashboard</title>
+    <link rel="shortcut icon" href="../PublicMedia/favicon.png" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js CDN -->
     <style>
         /* Theme Variables */
@@ -82,6 +83,10 @@
         .stat-box span {
             font-size: 2.5em;
             font-weight: bold;
+        }
+
+        a{
+            text-decoration: none;
         }
 
         /* Ticket Section */
@@ -188,10 +193,12 @@
 
         <!-- Stats Section -->
         <div class="stats-container">
-            <div class="stat-box">
-                <h3>Total Tickets</h3>
-                <p><span id="totalTickets">50</span> Tickets</p>
-            </div>
+            <a href="./FacilTicket/mng_FacilTicket.html">
+                <div class="stat-box">
+                    <h3>Total Tickets</h3>
+                    <p><span id="totalTickets">50</span> Tickets</p>
+                </div>
+            </a>
 
             <div class="stat-box">
                 <h3>Open Tickets</h3>
