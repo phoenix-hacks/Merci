@@ -38,7 +38,8 @@ body{
     position: relative;
     color: var(--text-color);
     font-family: 'Ubuntu', sans-serif;
-    background: linear-gradient(to bottom, var(--second-bg-color), rgb(29, 1, 29));
+    background: var(--bg-color);
+    /* background: linear-gradient(to bottom, var(--second-bg-color), rgb(29, 1, 29)); */
 }
 
 /* width */
@@ -92,7 +93,7 @@ section{
 }
 
 .section-title span{
-    color: var(--main-color);
+    color: #ff7300;
 }
 
 button{
