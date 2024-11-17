@@ -307,3 +307,77 @@
 footer{
     text-align: center;
 }
+
+/* Pricing Section */
+
+.pricing-container{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25rem 10rem 10rem 10rem;
+}
+
+.left-pricing{
+    width: 40%;
+}
+
+.left-pricing h2{
+    font-size: 8rem;
+}
+
+.right-pricing{
+    width: 45%;
+}
+
+.right-pricing p{
+    font-size: 2.5rem;
+    text-align: justify;
+}
+
+.pricing-details{
+    position: relative;
+    width: 85%;
+    margin: 0 auto;
+}
+
+.pricing-details h2{
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.pricing-box-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* flex-wrap: wrap; */
+    margin: 0 auto;
+    gap: 2rem;
+}
+
+.pricing-box{
+    max-width: 30%;
+    max-height: 100%;
+    padding: 2rem 3rem;
+    background: var(--second-bg-color);
+    border-radius: 1rem;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.pricing-box i{
+    font-size: 8rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+}
+
+.pricing-info h3{
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.pricing-info p{
+    font-size: 1.8rem;
+    text-align: justify;
+}
