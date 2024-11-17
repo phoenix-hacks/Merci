@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js CDN -->
+    <style>
+        /* Theme Variables */
+        :root {
+            --bg-dark: #0b0b0b;
+            --main-color: #ff7300;
+            --text-dark: #ffffff;
+            --box-shadow: rgba(255, 90, 145, 0.2) 0px 4px 15px, rgba(0, 0, 0, 0.8) 0px 4px 10px;
+        }
+
+        /* Reset and Layout */
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--bg-dark);
+            font-family: 'Ubuntu', sans-serif;
+            padding-top: 50px;  /* Added top padding to the entire page */
+        }
+
+        .container {
+            width: 85%;
+            padding: 2em;
+            background-color: #212121;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .header {
+            color: var(--main-color);
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Stats Container */
+        .stats-container {
+            display: flex;
+            gap: 30px;
+            justify-content: space-between;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            background-color: #333;
+            border-radius: 12px;
+            color: var(--text-dark);
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            flex: 1;
+            min-width: 250px;
+            margin: 10px;
+        }
+
+        .stat-box h3 {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+
+        .stat-box p {
+            font-size: 1.2em;
+            color: var(--main-color);
+            margin: 0;
+        }
+
+        .stat-box span {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        /* Chart and Table Container */
+        .chart-table-container {
+            display: flex;
+            gap: 30px;
+            justify-content: space-between;
+            width: 100%;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        /* Pie Chart Container */
+        .pie-chart-container {
+            width: 50%; /* Adjusted to give pie chart more room */
+            height: 80%; /* Adjusted to give pie chart more room */
+            display: flex;
+            justify-content: center;
+        }
+        
+    /* Back Button */
+    .back-button {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      display: flex;
+      align-items: center;
+      color: white;
+      font-size: 1.4rem;
+      padding: 0.8rem 1rem;
+      text-decoration: none;
+      border-radius: 0.5rem;
+      transition: transform 0.3s;
+      z-index: 1;
+    }
+/* Back Button */
+.back-button img {
+  height: 1.2rem;
+  margin-right: 0.8rem;
+}
+
+.back-button:hover {
+  transform: scale(1.2);
+}
+
+        /* Table Styling */
+        table {
+            width: 45%; /* Adjusted table width to balance layout */
+            background-color: #333;
+            border-collapse: collapse;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            color: var(--text-dark);
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #444;
+        }
+
+        table th {
+            background-color: var(--main-color);
+            color: white;
+        }
+
+        table td img {
+            width: 50px;
+            height: 50px;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: auto !important;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Back Button -->
+    <a href="Moption.html" class="back-button">
+        <img src="../PublicMedia/back.png" alt="Back"> Back
+      </a>
+
+    <div class="container">
+        <div class="header">Marketplace Data Dashboard</div>
+
+        <!-- Stats Section -->
+        <div class="stats-container">
+            <div class="stat-box">
+                <h3>Total Profit</h3>
+                <p>₹<span id="totalProfit">500000</span></p>
+            </div>
+
+            <div class="stat-box">
+                <h3>Total Items Sold</h3>
+                <p><span id="totalItems">300</span> Items</p>
+            </div>
+
+            <div class="stat-box">
+                <h3>Categories</h3>
+                <p><span id="furnitureCount">120</span> Furniture</p>
+                <p><span id="electronicsCount">50</span> Electronics</p>
+                <p><span id="booksCount">130</span> Books</p>
+            </div>
+        </div>
+
+        <!-- Chart and Table Section -->
+        <div class="chart-table-container">
+            <!-- Pie Chart Container -->
+            <div class="pie-chart-container">
+                <canvas id="categoryChart"></canvas>
+            </div>
+
+            <!-- Product Table -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Chair</td>
+                        <td>₹1009</td>
+                        <td><img src="../PublicMedia/chair.png" alt="Chair"></td>
+                    </tr>
+                    <tr>
+                        <td>Table</td>
+                        <td>₹3500</td>
+                        <td><img src="../PublicMedia/table.jpg" alt="Table"></td>
+                    </tr>
+                    <tr>
+                        <td>Books</td>
+                        <td>₹499</td>
+                        <td><img src="../PublicMedia/book.jpg" alt="Books"></td>
+                    </tr>
+                    <tr>
+                        <td>Components</td>
+                        <td>₹199</td>
+                        <td><img src="../PublicMedia/components.webp" alt="Components"></td>
+                    </tr>
+                    <tr>
+                        <td>Sofa</td>
+                        <td>₹4999</td>
+                        <td><img src="../PublicMedia/sofa.webp" alt="Sofa"></td>
+                    </tr>
+                    <tr>
+                        <td>Lamp</td>
+                        <td>₹799</td>
+                        <td><img src="../PublicMedia/lamp.webp" alt="Lamp"></td>
+                    </tr>
+                    <tr>
+                        <td>Bed</td>
+                        <td>₹8999</td>
+                        <td><img src="../PublicMedia/bed.webp" alt="Bed"></td>
+                    </tr>
+                    <tr>
+                        <td>Bookshelf</td>
+                        <td>₹2500</td>
+                        <td><img src="../PublicMedia/bookshelf.webp" alt="Bookshelf"></td>
+                    </tr>
+                    <tr>
+                        <td>Desk</td>
+                        <td>₹3500</td>
+                        <td><img src="../PublicMedia/desk.webp" alt="Desk"></td>
+                    </tr>
+                    <tr>
+                        <td>Chair with Arms</td>
+                        <td>₹1200</td>
+                        <td><img src="../PublicMedia/chair-arms.jpg" alt="Chair with Arms"></td>
+                    </tr>
+                    <tr>
+                        <td>Mirror</td>
+                        <td>₹599</td>
+                        <td><img src="../PublicMedia/mirror.jpg" alt="Mirror"></td>
+                    </tr>
+                    <tr>
+                        <td>Cabinet</td>
+                        <td>₹5500</td>
+                        <td><img src="../PublicMedia/cabinet.jpg" alt="Cabinet"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script>
+        // Pie chart showing category distribution
+        var ctx = document.getElementById('categoryChart').getContext('2d');
+        var categoryChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Furniture', 'Electronics', 'Books'],
+                datasets: [{
+                    label: 'Category Distribution',
+                    data: [120, 50, 130],  // Example category distribution (can be dynamic from table)
+                    backgroundColor: ['#ff7300', '#008bf8', '#28a745'],
+                    borderColor: ['#ff7300', '#008bf8', '#28a745'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.raw + ' items';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

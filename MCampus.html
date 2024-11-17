@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusConnect Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js CDN -->
+    <style>
+        /* Theme Variables */
+        :root {
+            --bg-dark: #121212;
+            --main-color: #ff7300;
+            --text-dark: #ffffff;
+            --box-shadow: rgba(255, 90, 145, 0.2) 0px 4px 15px, rgba(0, 0, 0, 0.8) 0px 4px 10px;
+        }
+
+        /* Reset and Layout */
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--bg-dark);
+            font-family: 'Ubuntu', sans-serif;
+            padding-top: 50px;  /* Added top padding to the entire page */
+        }
+/* Back Button */
+.back-button {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      display: flex;
+      align-items: center;
+      color: white;
+      font-size: 1.4rem;
+      padding: 0.8rem 1rem;
+      text-decoration: none;
+      border-radius: 0.5rem;
+      transition: transform 0.3s;
+      z-index: 1;
+    }
+/* Back Button */
+.back-button img {
+  height: 1.2rem;
+  margin-right: 0.8rem;
+}
+
+.back-button:hover {
+  transform: scale(1.2);
+}
+
+        .container {
+            width: 85%;
+            padding: 2em;
+            background-color: #212121;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .header {
+            color: var(--main-color);
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Stats Container */
+        .stats-container {
+            display: flex;
+            gap: 30px;
+            justify-content: space-between;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            background-color: #333;
+            border-radius: 12px;
+            color: var(--text-dark);
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            flex: 1;
+            min-width: 250px;
+            margin: 10px;
+        }
+
+        .stat-box h3 {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+
+        .stat-box p {
+            font-size: 1.2em;
+            color: var(--main-color);
+            margin: 0;
+        }
+
+        .stat-box span {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        /* Event, Clubs, and Activity Sections */
+        .section-container {
+            display: flex;
+            gap: 30px;
+            justify-content: space-between;
+            width: 100%;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        /* Event Section */
+        .event-box, .club-box, .activity-box {
+            background-color: #333;
+            border-radius: 12px;
+            color: var(--text-dark);
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            flex: 1;
+            min-width: 250px;
+            margin: 10px;
+        }
+
+        .event-box h3, .club-box h3, .activity-box h3 {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+
+        .event-box ul, .club-box ul, .activity-box ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .event-box ul li, .club-box ul li, .activity-box ul li {
+            font-size: 1.2em;
+            margin: 8px 0;
+            color: var(--main-color);
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            background-color: #333;
+            border-collapse: collapse;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            color: var(--text-dark);
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #444;
+        }
+
+        table th {
+            background-color: var(--main-color);
+            color: white;
+        }
+
+        table td img {
+            width: 50px;
+            height: 50px;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: auto !important;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Back Button -->
+    <a href="Moption.html" class="back-button">
+        <img src="../PublicMedia/back.png" alt="Back"> Back
+      </a>
+
+    <div class="container">
+        <div class="header">Campus Connect Dashboard</div>
+
+        <!-- Stats Section -->
+        <div class="stats-container">
+            <div class="stat-box">
+                <h3>Total Events</h3>
+                <p><span id="totalEvents">35</span> Events</p>
+            </div>
+
+            <div class="stat-box">
+                <h3>Active Clubs</h3>
+                <p><span id="totalClubs">25</span> Clubs</p>
+            </div>
+
+            <div class="stat-box">
+                <h3>Active Students</h3>
+                <p><span id="activeStudents">3200</span> Students</p>
+            </div>
+        </div>
+
+        <!-- Event, Clubs, and Activities Section -->
+        <div class="section-container">
+            <!-- Events Section -->
+            <div class="event-box">
+                <h3>Upcoming Events</h3>
+                <ul>
+                    <li>Annual Sports Day - Dec 10</li>
+                    <li>TechFest - Jan 15</li>
+                    <li>Cultural Night - Feb 5</li>
+                    <li>Guest Lecture on AI - Dec 20</li>
+                    <li>Workshop on Leadership - Jan 25</li>
+                    <li>Music Fest - Feb 15</li>
+                </ul>
+            </div>
+
+            <!-- Clubs Section -->
+            <div class="club-box">
+                <h3>Popular Clubs</h3>
+                <ul>
+                    <li>Robotics Club - 250 members</li>
+                    <li>Drama Club - 150 members</li>
+                    <li>Music Club - 200 members</li>
+                    <li>Photography Club - 120 members</li>
+                    <li>Literature Club - 180 members</li>
+                    <li>Coding Club - 350 members</li>
+                    <li>Sports Club - 300 members</li>
+                    <li>Debate Club - 100 members</li>
+                </ul>
+            </div>
+
+            <!-- Recent Activities Section -->
+            <div class="activity-box">
+                <h3>Recent Activities</h3>
+                <ul>
+                    <li>Annual Debate Competition - Nov 10</li>
+                    <li>Basketball Tournament - Nov 12</li>
+                    <li>Workshop on Machine Learning - Nov 14</li>
+                    <li>Dance Competition - Nov 18</li>
+                    <li>Photography Exhibition - Nov 22</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Student Connection Section -->
+        <div class="section-container">
+            <div class="stat-box">
+                <h3>Student Connections</h3>
+                <p><span id="connectedStudents">1000</span> Students Connected</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Random data for the chart
+        var ctx = document.getElementById('studentActivityChart').getContext('2d');
+        var studentActivityChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Sports', 'Tech', 'Cultural', 'Workshops'],
+                datasets: [{
+                    label: 'Activity Participation',
+                    data: [900, 500, 700, 300],  // Random student participation data
+                    backgroundColor: ['#ff7300', '#008bf8', '#28a745', '#ffc107'],
+                    borderColor: ['#ff7300', '#008bf8', '#28a745', '#ffc107'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.raw + ' students';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
