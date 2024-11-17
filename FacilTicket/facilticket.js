@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
             openTicketCount.textContent = parseInt(openTicketCount.textContent) + 1;
 
             // Clear the ticket data from local storage after using it
-            localStorage.removeItem('ticketData');
+            // localStorage.removeItem('ticketData');
         }
     }
 
@@ -103,17 +103,6 @@ document.addEventListener('DOMContentLoaded', function() {
             ticketCount.textContent = parseInt(ticketCount.textContent) + 1;
             openTicketCount.textContent = parseInt(openTicketCount.textContent) + 1;
 
-            // Clear the content of ticket.json (simulate deletion)
-            const emptyData = JSON.stringify({}); // or any placeholder data
-            const blob = new Blob([emptyData], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'ticket.json'; // Overwrite the existing ticket.json
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url); // Clean up
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
