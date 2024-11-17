@@ -1,0 +1,309 @@
+:root {
+    --bg-color: #0b0b0b;
+    --text-color: #ffffff;
+    --primary-color: #ff7300;
+    --hover-color: #3700b3;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 5rem;
+    background-color: #1e1e1e;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.logo{
+    font-size: 2rem;
+}
+
+.navbar a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.6rem;
+    margin: 0 1rem;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: var(--primary-color);
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden; /* Hide overflow for animations */
+}
+
+.hero h1 {
+    font-size: 10rem;
+    color: var(--primary-color);
+    animation: fadeInUp 1s ease forwards;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.hero p {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: #ffffff;
+    animation: fadeInUp 1.2s ease forwards;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.hero .btn {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    animation: fadeInUp 1.4s ease forwards;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.hero .btn:hover {
+    background-color: var(--hover-color);
+    transform: scale(1.1); /* Scale up on hover */
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Background Animation */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: 1; /* Place it below the text */
+}
+
+.hero h1, .hero p, .hero .btn {
+    position: relative;
+    z-index: 2; /* Bring text above the overlay */
+}
+
+.btn {
+    font-size: 1.2rem;
+    padding: 1rem 2.5rem;
+    border: none;
+    outline: none;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    background-color: rgb(14, 14, 26);
+    color: rgb(234, 234, 234);
+    font-weight: 700;
+    transition: 0.6s;
+    box-shadow: 0px 0px 60px #1f4c65;
+    -webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+  }
+  
+  .btn:active {
+    scale: 0.92;
+  }
+  
+  .btn:hover {
+    background: rgb(2,29,78);
+    background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
+    color: rgb(4, 4, 38);
+  }
+
+.services .section-title span{
+    color: var(--primary-color);
+}
+
+.services p{
+    margin: 0 5rem;
+    font-size: 2.3rem;
+    text-align: justify;
+}
+
+.services-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem auto 0;
+    padding: 0 5rem;
+    width: 80%;
+}
+
+.services-container h2{
+    font-size: 3rem;
+    text-transform: uppercase;
+    color: var(--primary-color);
+}
+
+.services-list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 3rem 0;
+}
+
+.service-box{
+    position: relative;
+    width: 25%;
+    height: 20rem;
+    backdrop-filter: blur(1px);
+    box-shadow: 0 0 1rem var(--hover-color);
+    border-radius: 2rem;
+    padding: 3rem 5rem;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.service-box h3{
+    font-size: 4rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.service-box:hover h3{
+    transform: scale(1.1);
+  }
+
+.service-info{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    /* background: linear-gradient(rgba(0,0,0, .1), var(--second-bg-color)); */
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-direction: column;
+    text-align: center;
+    padding: 0 1rem;
+    transform: translateY(100%);
+    transition: .4s ease;
+    cursor: grab;
+  }
+  
+  .service-box:hover .service-info{
+    transform: scale(1.1);
+  }
+
+.service-info p{
+    font-size: 2rem;
+}
+
+.service-info button{
+    padding: 1rem 2rem;
+    margin-top: 1rem;
+    font-size: 2rem;
+    background: var(--primary-color);
+    border-radius: 2rem;
+    transition: all 0.5s ease-in-out;
+}
+
+.service-info button:hover{
+    background: var(--hover-color);
+    color: var(--text-color);
+    transform: scale(1.1); /* Scale up on hover */
+}
+
+.services-list .service-box:nth-child(2){
+    margin: 0 3rem;
+}
+
+.services-container .btn{
+    font-size: 1.7rem;
+    box-shadow: 0 0 1rem #1f4c65;
+}
+
+/* ------------------Contact section style------------------ */
+
+.contact h2{
+    margin-bottom:3rem;
+}
+
+.contact form{
+    max-width: 80rem;
+    margin: 1rem auto;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.contact form .input-box{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.input-box input{
+    max-width: 45%;
+} 
+
+.contact form .input-box input, .contact form textarea{
+    width: 95%;
+    padding: 1.5rem;
+    font-size: 1.6rem;
+    color: var(--text-color);
+    background: var(--second-bg-color);
+    border-radius: .8rem;
+    margin: .7rem 0;
+}
+
+.contact form .input-box input {
+    width: 49%;
+}
+
+.contact form textarea{
+    resize: none;
+}
+
+.submit-btn{
+    background-color: var(--primary-color);
+    padding: 1rem 2rem;
+    margin-top: 2rem;
+    border: none;
+    border-radius: 3rem;
+    font-size: 1.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.submit-btn:hover{
+    box-shadow: 0 0 1rem var(--text-color);
+    transform: scale(1.1); /* Scale up on hover */
+}
+
+footer{
+    text-align: center;
+}
