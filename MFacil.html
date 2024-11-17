@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FacilTicket Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js CDN -->
+    <style>
+        /* Theme Variables */
+        :root {
+            --bg-dark: #121212;
+            --main-color: #ff7300;
+            --text-dark: #ffffff;
+            --box-shadow: rgba(255, 90, 145, 0.2) 0px 4px 15px, rgba(0, 0, 0, 0.8) 0px 4px 10px;
+        }
+
+        /* Reset and Layout */
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--bg-dark);
+            font-family: 'Ubuntu', sans-serif;
+            padding-top: 50px;
+        }
+
+        .container {
+            width: 85%;
+            padding: 2em;
+            background-color: #212121;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .header {
+            color: var(--main-color);
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Stats Container */
+        .stats-container {
+            display: flex;
+            gap: 30px;
+            justify-content: space-between;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            background-color: #333;
+            border-radius: 12px;
+            color: var(--text-dark);
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            flex: 1;
+            min-width: 250px;
+            margin: 10px;
+        }
+
+        .stat-box h3 {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+
+        .stat-box p {
+            font-size: 1.2em;
+            color: var(--main-color);
+            margin: 0;
+        }
+
+        .stat-box span {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+
+        /* Ticket Section */
+        .ticket-container {
+            display: flex;
+            gap: 30px;
+            justify-content: space-between;
+            width: 100%;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .ticket-box {
+            background-color: #333;
+            border-radius: 12px;
+            color: var(--text-dark);
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            flex: 1;
+            min-width: 250px;
+            margin: 10px;
+        }
+
+        .ticket-box h3 {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+
+        .ticket-box ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .ticket-box ul li {
+            font-size: 1.2em;
+            margin: 8px 0;
+            color: var(--main-color);
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            background-color: #333;
+            border-collapse: collapse;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            color: var(--text-dark);
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #444;
+        }
+
+        table th {
+            background-color: var(--main-color);
+            color: white;
+        }
+
+        /* Ticket Chart */
+        canvas {
+            width: 100% !important;
+            height: auto !important;
+        }
+
+        /* Back Button */
+.back-button {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      display: flex;
+      align-items: center;
+      color: white;
+      font-size: 1.4rem;
+      padding: 0.8rem 1rem;
+      text-decoration: none;
+      border-radius: 0.5rem;
+      transition: transform 0.3s;
+      z-index: 1;
+    }
+/* Back Button */
+.back-button img {
+  height: 1.2rem;
+  margin-right: 0.8rem;
+}
+
+.back-button:hover {
+  transform: scale(1.2);
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Back Button -->
+    <a href="Moption.html" class="back-button">
+        <img src="../PublicMedia/back.png" alt="Back"> Back
+      </a>
+
+    <div class="container">
+        <div class="header">Facility Ticket Dashboard</div>
+
+        <!-- Stats Section -->
+        <div class="stats-container">
+            <div class="stat-box">
+                <h3>Total Tickets</h3>
+                <p><span id="totalTickets">50</span> Tickets</p>
+            </div>
+
+            <div class="stat-box">
+                <h3>Open Tickets</h3>
+                <p><span id="openTickets">15</span> Tickets</p>
+            </div>
+
+            <div class="stat-box">
+                <h3>Resolved Tickets</h3>
+                <p><span id="resolvedTickets">35</span> Tickets</p>
+            </div>
+        </div>
+
+        <!-- Ticket Status Section -->
+        <div class="ticket-container">
+            <!-- Open Tickets -->
+            <div class="ticket-box">
+                <h3>Open Tickets</h3>
+                <ul>
+                    <li>AC Repair - Raised on Dec 1</li>
+                    <li>Water Leakage - Raised on Dec 2</li>
+                    <li>Door Lock Issue - Raised on Dec 3</li>
+                    <li>Electrical Short Circuit - Raised on Dec 4</li>
+                    <li>WiFi Issue - Raised on Dec 5</li>
+                </ul>
+            </div>
+
+            <!-- Resolved Tickets -->
+            <div class="ticket-box">
+                <h3>Resolved Tickets</h3>
+                <ul>
+                    <li>Broken Chair - Resolved on Nov 25</li>
+                    <li>Leaky Faucet - Resolved on Nov 26</li>
+                    <li>Faulty Lights - Resolved on Nov 27</li>
+                    <li>Heater Repair - Resolved on Nov 28</li>
+                    <li>Table Damage - Resolved on Nov 29</li>
+                </ul>
+            </div>
+
+            <!-- Pending Tickets -->
+            <div class="ticket-box">
+                <h3>Pending Tickets</h3>
+                <ul>
+                    <li>Room Cleaning - Pending</li>
+                    <li>Computer Setup - Pending</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Ticket Status Pie Chart -->
+        <div class="ticket-chart-container">
+            <canvas id="ticketStatusChart"></canvas>
+        </div>
+
+        <!-- Ticket Table -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ticket ID</th>
+                        <th>Issue</th>
+                        <th>Status</th>
+                        <th>Date Raised</th>
+                        <th>Resolved Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#1001</td>
+                        <td>AC Repair</td>
+                        <td>Open</td>
+                        <td>Dec 1, 2024</td>
+                        <td>--</td>
+                    </tr>
+                    <tr>
+                        <td>#1002</td>
+                        <td>Water Leakage</td>
+                        <td>Open</td>
+                        <td>Dec 2, 2024</td>
+                        <td>--</td>
+                    </tr>
+                    <tr>
+                        <td>#1003</td>
+                        <td>Electrical Short Circuit</td>
+                        <td>Resolved</td>
+                        <td>Dec 4, 2024</td>
+                        <td>Dec 6, 2024</td>
+                    </tr>
+                    <tr>
+                        <td>#1004</td>
+                        <td>WiFi Issue</td>
+                        <td>Resolved</td>
+                        <td>Dec 5, 2024</td>
+                        <td>Dec 6, 2024</td>
+                    </tr>
+                    <tr>
+                        <td>#1005</td>
+                        <td>Door Lock Issue</td>
+                        <td>Pending</td>
+                        <td>Dec 3, 2024</td>
+                        <td>--</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Pie chart showing ticket status distribution
+        var ctx = document.getElementById('ticketStatusChart').getContext('2d');
+        var ticketStatusChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Open Tickets', 'Resolved Tickets', 'Pending Tickets'],
+                datasets: [{
+                    label: 'Ticket Status Distribution',
+                    data: [15, 35, 5],  // Random data for ticket status
+                    backgroundColor: ['#ff7300', '#28a745', '#ffc107'],
+                    borderColor: ['#ff7300', '#28a745', '#ffc107'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.raw + ' tickets';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

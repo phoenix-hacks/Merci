@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Management Purchase Page</title>
+    <style>
+        /* Theme Variables */
+        :root {
+            --bg-dark: #0b0b0b;
+            --main-color: #ff7300;
+            --text-dark: #ffffff;
+            --box-shadow: rgba(255, 90, 145, 0.2) 0px 4px 15px, rgba(0, 0, 0, 0.8) 0px 4px 10px;
+        }
+
+        /* Reset and Layout */
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Align containers on opposite sides */
+            background-color: var(--bg-dark);
+            font-family: 'Ubuntu', sans-serif;
+            padding: 0 20px; /* Padding between both containers */
+        }
+
+        .card {
+  width: 210px;
+  height: 254px;
+  border-radius: 4px;
+  background: #212121;
+  display: flex;
+  gap: 5px;
+  padding: .4em;
+}
+
+.card p {
+  height: 100%;
+  flex: 1;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all .5s;
+  background: #212121;
+  border: 1px solid #ff5a91;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card p:hover {
+  flex: 4;
+}
+
+.card p span {
+  min-width: 14em;
+  padding: .5em;
+  text-align: center;
+  transform: rotate(-90deg);
+  transition: all .5s;
+  text-transform: uppercase;
+  color: #ff568e;
+  letter-spacing: .1em;
+}
+
+.card p:hover span {
+  transform: rotate(0);
+}
+
+        /* Container Styling */
+        .container {
+            width: 45%; /* Adjusted to make both containers the same size */
+            padding: 2em;
+            background-color: #212121;
+            border-radius: 8px;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Heading Styling */
+        .container h2 {
+            color: var(--main-color);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 1.5em;
+            margin: 0;
+        }
+
+        /* Card Styling */
+        .card {
+            width: 100%; /* Full width of the container */
+            height: 254px;
+            display: flex;
+            gap: 45px;
+            background: #212121;
+        }
+
+        .card p {
+            height: 100%;
+            flex: 1;
+            overflow: hidden;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.5s ease-in-out;
+            background: #212121;
+            border: 1px solid var(--main-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: rgba(255, 90, 145, 0.3) 0px 2px 10px;
+        }
+
+        .card p.hovered {
+            flex: 4;
+            background: var(--main-color);
+            color: var(--text-dark);
+            box-shadow: rgba(255, 90, 145, 0.5) 0px 5px 15px;
+        }
+
+        .card p span {
+            min-width: 14em;
+            padding: 0.5em;
+            text-align: center;
+            transform: rotate(-90deg); /* Initial rotation */
+            transition: all 0.5s ease-in-out;
+            text-transform: uppercase;
+            color: var(--main-color);
+            letter-spacing: 0.1em;
+        }
+
+        .card p.hovered span {
+            transform: rotate(0); /* Rotate to horizontal when hovered */
+            color: var(--text-dark);
+        }
+
+        /* Other Services Container */
+        .other-services-container {
+            width: 100%; /* Full width of the container */
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap; /* Allow wrapping to the next row */
+        }
+
+        /* Card for Other Services */
+        .service-card {
+            width: 150px;
+            height: 200px;
+            border-radius: 20px;
+            background: #f5f5f5;
+            position: relative;
+            padding: 1.8rem;
+            border: 2px solid #c3c6ce;
+            transition: 0.5s ease-out;
+            overflow: visible;
+            place-content: center;
+        }
+
+        .service-card-details {
+            color: black;
+            text-size-adjust: 50%;
+            height: 80%;
+            gap: .5em;
+            display: grid;
+            place-content: center;
+        }
+
+        .service-card-button {
+            transform: translate(-50%, 125%);
+            width: 60%;
+            border-radius: 1rem;
+            border: none;
+            background-color: #008bf8;
+            color: #fff;
+            font-size: 1rem;
+            padding: .5rem 1rem;
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            opacity: 0;
+            transition: 0.3s ease-out;
+        }
+
+        .service-card:hover {
+            border-color: #008bf8;
+            box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+        }
+
+        .service-card-button.active {
+            transform: translate(-50%, 50%);
+            opacity: 1;
+        }
+
+        .service-card:hover .service-card-button {
+            transform: translate(-50%, 50%);
+            opacity: 1;
+        }
+
+        /* Add to Cart Button */
+        .add-to-cart {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: var(--main-color);
+            color: var(--text-dark);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+
+        .add-to-cart.show {
+    display: block; /* Make the button visible */
+    position: absolute; /* Position it at the bottom */
+    left: 50%; /* Center it horizontally */
+    transform: translateX(-50%); /* Center the button */
+    bottom: 20px; /* Distance from the bottom */
+    padding: 10px 20px;
+    background-color: var(--main-color);
+    color: var(--text-dark);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+.back-button {
+  position: absolute; /* Place it at a fixed position */
+  top: 1rem; /* Set it at the top */
+  left: 1rem; /* Align it to the left corner */
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 1.4rem;
+  text-decoration: none;
+  padding: 0.8rem 1rem;
+  border-radius: 0.5rem;
+  transition: transform 0.3s;
+  z-index: 1;
+}
+
+.back-button img {
+  height: 1.2rem;
+  margin-right: 0.8rem;
+}
+
+.back-button:hover {
+  transform: scale(1.2); /* Slight zoom effect */
+}
+.card a {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Ensure text color stays the same */
+    display: block; /* Make the anchor a block element so it fills the <p> */
+    height: 100%; /* Ensure the link covers the entire <p> */
+}
+
+
+    </style>
+</head>
+<body>
+     <!-- Back Button -->
+     <a href="loginshow.html" class="back-button">
+        <img src="../PublicMedia/back.png" alt="Back"> Back
+      </a>
+
+    <div class="container">
+        <h2>Already Subscribed Services</h2>
+        <div class="card">
+            <p onclick="location.href='Mmarket.html'"><span>MarketPlace</span></p>
+            <p onclick="location.href='MCampus.html'"><span>CampusConnect</span></p>
+            <p onclick="location.href='MFacil.html'"><span>FacilTicket</span></p>
+        </div>
+        
+        
+    </div>
+
+    <div class="container">
+        <h2>Other Services Provided</h2>
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <div class="other-services-container">
+            <div class="service-card" data-price="30000" data-name="Streamlined food ordering">
+                <div class="service-card-details">
+                    <p class="text-title"><b>Streamlined food ordering</b></p>
+                    <p class="text-price">Rs.30,000.00</p>
+                </div>
+                <button class="service-card-button">Add to cart</button>
+            </div>
+
+            <div class="service-card" data-price="70000" data-name="Instant Medical Assistance">
+                <div class="service-card-details">
+                    <p class="text-title"><b>Instant Medical Assistance</b></p>
+                    <p class="text-price">Rs.70,000.00</p>
+                </div>
+                <button class="service-card-button">Add to cart</button>
+            </div>
+
+            <div class="service-card" data-price="50000" data-name="Simplified Event Approval process">
+                <div class="service-card-details">
+                    <p class="text-title"><b>Simplified Event Approval process</b></p>
+                    <p class="text-price">Rs.50,000.00</p>
+                </div>
+                <button class="service-card-button">Add to cart</button>
+            </div>
+
+        </div>
+    </div>
+
+    <button class="add-to-cart" id="buyNowButton">Buy Now</button>
+
+    <script>
+        // Get the buttons and "Buy Now" button
+        const buttons = document.querySelectorAll('.service-card-button');
+        const buyNowButton = document.getElementById('buyNowButton');
+        let selectedProduct = null;
+
+        // Add event listeners to each service card button
+        buttons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                // Get the price and name from data attributes of the clicked product
+                const product = e.target.closest('.service-card');
+                const productName = product.getAttribute('data-name');
+                const productPrice = parseInt(product.getAttribute('data-price'));
+
+                selectedProduct = { name: productName, price: productPrice };
+
+                // Highlight the clicked button and show "Buy Now"
+                e.target.classList.add('active');
+                buyNowButton.classList.add('show');
+            });
+        });
+
+        // Payment logic for the "Buy Now" button
+        buyNowButton.addEventListener('click', function() {
+            if (selectedProduct) {
+                startPayment(selectedProduct);
+            } else {
+                alert("Please select a service to buy.");
+            }
+        });
+
+        // Razorpay payment function
+        function startPayment(product) {
+            const options = {
+                key: "rzp_test_9KcwA99uW7xFq7", // Your Razorpay Key
+                amount: product.price * 100, // Amount in paise (100 paise = 1 INR)
+                currency: "INR",
+                name: "We Sale",
+                description: `Purchase of ${product.name}`,
+                image: "../PublicMedia/logo.png", // Path to logo
+                handler: function (response) {
+                    alert(`Payment successful! Payment ID: ${response.razorpay_payment_id}`);
+                    // You can send this payment ID to your server for verification
+                },
+                prefill: {
+                    name: "John Doe", // Optional: Prefill customer's name
+                    email: "john.doe@example.com", // Optional: Prefill customer's email
+                    contact: "9999999999" // Optional: Prefill customer's contact number
+                },
+                notes: {
+                    address: "Some address" // Optional: Add any notes
+                },
+                theme: {
+                    color: "#ff7300" // Theme color
+                }
+            };
+
+            const rzp = new Razorpay(options);
+            rzp.open();
+        }
+    </script>
+</body>
+</html>
